@@ -169,11 +169,13 @@ button{
 <div class="footer">Держись. Ты уже сделал главное.</div>
 
 <script>
-let start = localStorage.getItem("start");
-let price = localStorage.getItem("price") || 165;
-let cigsPerDay = localStorage.getItem("cigs") || 20;
+const CIGS_PER_PACK = 20;
 
-if (!start){
+let start = localStorage.getItem("start");
+let price = parseFloat(localStorage.getItem("price")) || 165;
+let cigsPerDay = parseFloat(localStorage.getItem("cigs")) || 20;
+       
+        if (!start){
   start = new Date().toISOString();
   localStorage.setItem("start", start);
 }
@@ -200,9 +202,9 @@ function update(){
   const h = Math.floor(sec/3600)%24;
   const m = Math.floor(sec/60)%60;
 
-  time.innerText = `${d} д ${h} ч ${m} мин`;
+  
 
-  const saved = (sec*(price/86400)).toFixed(2);
+  const saved = (sec * cigsPerDay * price / (CIGS_PER_PACK * 86400)).toFixed(2);
   money.innerText = saved + " грн";
 
   const cigs = Math.floor((sec/86400)*cigsPerDay);
