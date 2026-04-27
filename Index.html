@@ -177,7 +177,10 @@ let price = parseFloat(localStorage.getItem("price")) || 165;
 let cigsPerDay = parseFloat(localStorage.getItem("cigs")) || 20;
        
         if (!start){
-  start = new Date().toISOString();
+  if (!localStorage.getItem("start_manual")){
+  document.getElementById("dateInput").classList.add("highlight");
+}
+          start = new Date().toISOString();
   localStorage.setItem("start", start);
 }
 
@@ -188,7 +191,10 @@ function save(){
   const p = priceInput.value;
   const c = cigsInput.value;
 
-  if(d) localStorage.setItem("start", d);
+  if(d){
+    localStorage.setItem("start", d);
+    localStorage.setItem("start_manual", "1");
+  }
   if(p) localStorage.setItem("price", p);
   if(c) localStorage.setItem("cigs", c);
 
