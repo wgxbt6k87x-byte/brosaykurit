@@ -190,10 +190,14 @@ let cigsPerDay = parseFloat(localStorage.getItem("cigs")) || 20;
   if (!localStorage.getItem("start_manual")){
   document.getElementById("dateInput").classList.add("highlight");
 }
-          start = new Date().toISOString();
-  localStorage.setItem("start", start);
+          if (!start){
+  startDisplay.innerText = "Не задано";
+} else {
+  start = new Date(start);
 }
-
+if (!localStorage.getItem("start")){
+  document.getElementById("dateInput").classList.add("highlight");
+}
 start = new Date(start);
 
 function save(){
@@ -239,7 +243,7 @@ function update(){
 }
 
 setInterval(update,1000);
-update()const startDisplay = document.getElementById("startDisplay");
+update()startDisplay.innerText = formatDate(start);const startDisplay = document.getElementById("startDisplay");
 
 function formatDate(d){
   return d.toLocaleString("ru-RU", {
