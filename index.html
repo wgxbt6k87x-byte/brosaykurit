@@ -161,7 +161,9 @@ button{
 <div class="card">
   <div class="label">Настройки</div>
   <<div class="label">Дата начала (когда бросил)</div>
-<input type="datetime-local" id="dateInput" placeholder="Выбери дату и время">
+<div class="label">Дата начала</div>
+<div class="startDisplay" id="startDisplay"></div>
+<input type="datetime-local" id="dateInput"><input type="datetime-local" id="dateInput" placeholder="Выбери дату и время">
   <input type="number" id="priceInput" placeholder="Цена пачки (грн)">
   <input type="number" id="cigsInput" placeholder="Сигарет в день">
   <button onclick="save()">Сохранить</button>
